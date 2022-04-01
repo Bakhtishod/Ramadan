@@ -40,7 +40,7 @@ class _UserScreenState extends State<UserScreen> {
     } else if(month==04 && int.parse(date)>1) {
       currentRamadanDay = int.parse(date) - 2;
     } else {
-      // hasStarted=false;
+      hasStarted=false;
     }
   }
 
