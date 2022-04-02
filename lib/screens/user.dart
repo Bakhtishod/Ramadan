@@ -39,8 +39,6 @@ class _UserScreenState extends State<UserScreen> {
       currentRamadanDay=30;
     } else if(month==04 && int.parse(date)>1) {
       currentRamadanDay = int.parse(date) - 2;
-    } else {
-      hasStarted=false;
     }
   }
 
@@ -49,10 +47,7 @@ class _UserScreenState extends State<UserScreen> {
     return Container(
       color: Colors.white,
       child: Center(
-          child: hasStarted==false?
-              Container(
-                  child: Text("Ramazon oyi hali boshlanmadi!", style: TextStyle(fontFamily: "Roboto", color: mainColor, fontSize: 30), textAlign: TextAlign.center,)):
-          Container(
+          child: Container(
             color: mainColor,
             child: FutureBuilder(
         future: DefaultAssetBundle.of(context).loadString("assets/data.json"),
