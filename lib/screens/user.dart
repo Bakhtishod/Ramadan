@@ -35,10 +35,13 @@ class _UserScreenState extends State<UserScreen> {
   dayOfRamadan() {
     String month = DateFormat("MM").format(DateTime.now());
     String date = DateFormat("dd").format(DateTime.now());
-    if(month==05){
+    String day = DateFormat("MM-dd").format(DateTime.now());
+    if(month=="05" && date == "01"){
       currentRamadanDay=30;
-    } else if(month==04 && int.parse(date)>1) {
+    } else if(month=="04" && int.parse(date)>1) {
       currentRamadanDay = int.parse(date) - 2;
+    } else{
+      hasStarted=false;
     }
   }
 
@@ -47,7 +50,10 @@ class _UserScreenState extends State<UserScreen> {
     return Container(
       color: Colors.white,
       child: Center(
-          child: Container(
+          child: hasStarted==false?
+              Container(
+                  child: Text("Bugun Ramazon oyi emas!", style: TextStyle(fontFamily: "Roboto", color: mainColor, fontSize: 30), textAlign: TextAlign.center,)):
+          Container(
             color: mainColor,
             child: FutureBuilder(
         future: DefaultAssetBundle.of(context).loadString("assets/data.json"),
